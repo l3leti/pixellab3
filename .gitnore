@@ -3,14 +3,14 @@
 export.cfg
 export_presets.cfg
 
-#Imported translations (automatically generated from CSV files)
+# Imported translations (automatically generated from CSV files)
 *.translation
 
-#Mono-specific ignores
+# Mono-specific ignores
 .mono/
 data_*/
 
-#Carpetas extras para ignorar (descomentar según necesidad)
+# Carpetas extras para ignorar (descomentar según necesidad)
 Builds/
 #Documentation/
 TemporalAssests/
