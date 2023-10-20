@@ -8,6 +8,7 @@ radius = 5.23596
 height = 27.6917
 
 [node name="Proyectil" type="Area2D"]
+z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
