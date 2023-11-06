@@ -9,7 +9,7 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
 export var estela_maxima:int = 150
-
+export var hitpoints:float = 15.0
 ## Atributos
 var empuje:Vector2 = Vector2 .ZERO
 var dir_rotacion:int = 0
@@ -112,6 +112,12 @@ func esta_funcion_hace_un_monton_de_cosas() -> void:
 
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
+
+func recibir_danio(danio:float) -> void:
+	hitpoints -= danio
+	if hitpoints <= 0.0:
+		destruir()
+
 
 ##Señales internas
 func _on_AnimationPlayer_animation_finished(anim_name):
