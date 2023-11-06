@@ -17,11 +17,12 @@ var estado_actual:int = ESTADO.SPAWN
 var no_hacer_nada = false
 
 ## Atributos Onready
-onready var canion: Canion = $Canion
+onready var canion:Canion = $Canion
 onready var laser: RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var escudo:Escudo = $Escudo
 
 ## Metodos
 func _unhandled_input(event: InputEvent) -> void:
@@ -42,6 +43,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if (event.is_action_released("mover_adelante") or event.is_action_released("mover_atras")):
 		motor_sfx.sonido_off() 
+	#control Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
 
 func _integrate_forces(_state: Physics2DDirectBodyState): 
 	apply_central_impulse(empuje.rotated(rotation))
@@ -117,7 +121,6 @@ func recibir_danio(danio:float) -> void:
 	hitpoints -= danio
 	if hitpoints <= 0.0:
 		destruir()
-
 
 ##Señales internas
 func _on_AnimationPlayer_animation_finished(anim_name):
