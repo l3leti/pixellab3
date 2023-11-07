@@ -24,8 +24,13 @@ shape = SubResource( 1 )
 position = Vector2( 0.999999, 2.38419e-07 )
 scale = Vector2( 1.8, 0.5 )
 
+<<<<<<< Updated upstream
 [connection signal="area_entered" from="." to="." method="_on_Proyectil_area_entered"]
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="." to="." method="_onl_area_entered"]
+=======
+[connection signal="area_entered" from="." to="." method="_onl_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+>>>>>>> Stashed changes
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

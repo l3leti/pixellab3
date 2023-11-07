@@ -40,7 +40,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("mover_atras"):
 		estela.set_max_points(0)
 		motor_sfx.sonido_on()
-
 	if (event.is_action_released("mover_adelante") or event.is_action_released("mover_atras")):
 		motor_sfx.sonido_off() 
 	#control Escudo
@@ -74,7 +73,7 @@ func player_input(): #(-> void)#:
 	elif Input.is_action_pressed("rotar_horario"):
 		dir_rotacion += 1
 	#Disparo
-	if Input.is_action_just_pressed("disparo_principal"):
+	if Input.is_action_pressed("disparo_principal"):
 		canion.set_esta_disparando(true)
 	if Input.is_action_just_released("disparo_principal"):
 		canion.set_esta_disparando(false)
