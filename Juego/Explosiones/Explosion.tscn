@@ -233,6 +233,18 @@ tracks/8/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("ExplosionSFX:stream:loop")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="Explosion" type="Node2D"]
 z_index = 1
