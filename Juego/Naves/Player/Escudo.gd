@@ -46,15 +46,8 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		$AnimationPlayer.play("activado")
 		set_process(true)
 
-<<<<<<< Updated upstream
-
-
-func _on_body_entered(body: Node) -> void:
-	body.queue_free()
-=======
 func _on_body_entered(body: Node) -> void:
 	body.queue_free()
 
 func _on_area_entered(area: Node) -> void:
 	queue_free()
->>>>>>> Stashed changes
