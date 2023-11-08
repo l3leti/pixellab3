@@ -76,7 +76,7 @@ position = Vector2( 0, -1 )
 [node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
 
 [node name="EstelaPuntoInicio" type="Position2D" parent="."]
-position = Vector2( -8, -5 )
+position = Vector2( -8, -11 )
 
 [node name="Trail2D" parent="EstelaPuntoInicio" instance=ExtResource( 6 )]
 position = Vector2( -12, 1 )

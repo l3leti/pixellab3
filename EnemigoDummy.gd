@@ -16,5 +16,5 @@ func _on_Area2D_body_entered(body: Node) -> void:
 	if body is Player:
 		body.destruir()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$Canion.set_esta_disparando(true)

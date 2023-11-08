@@ -49,5 +49,5 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func _on_body_entered(body: Node) -> void:
 	body.queue_free()
 
-func _on_area_entered(area: Node) -> void:
+func _on_area_entered(_area: Node) -> void:
 	queue_free()
