@@ -14,6 +14,7 @@ var hitpoints:float
 var esta_en_sector:bool = true setget set_esta_en_sector
 var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
+var esta_destrudio:bool = false
 
 ##Setters y Getters
 
@@ -53,9 +54,10 @@ func crear(pos: Vector2, dir:Vector2, tamanio: float) -> void:
 
 func recibir_danio(danio:float) -> void:
 	hitpoints -= danio
-	if hitpoints <= 0:
+	if hitpoints <= 0 and not esta_destrudio:
+		esta_destrudio = true
 		destruir()
-	#impacto_sfx.play()
+	#animaciones.play("recibir_danio")
 
 func destruir() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)

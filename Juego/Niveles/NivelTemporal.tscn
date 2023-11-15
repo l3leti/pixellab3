@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=9]
+[ext_resource path="res://icon.png" type="Texture" id=10]
 
 [node name="NivelTemporal" type="Node"]
 script = ExtResource( 3 )
@@ -40,3 +41,5 @@ numero_peligros = 12
 [node name="TweenCamara" type="Tween" parent="."]
 
 [node name="icon" type="Sprite" parent="."]
+position = Vector2( 801, 761 )
+texture = ExtResource( 10 )
