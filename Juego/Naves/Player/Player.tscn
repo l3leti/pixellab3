@@ -91,14 +91,17 @@ lifetime = 0.6
 max_points = 150
 target_path = NodePath("..")
 
-[node name="MotorSFX" parent="." instance=ExtResource( 7 )]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spawn"
 anims/deafult = SubResource( 2 )
 anims/spawn = SubResource( 3 )
 
+[node name="MotorSFX" parent="." instance=ExtResource( 7 )]
+
 [node name="Escudo" parent="." instance=ExtResource( 8 )]
+
+[node name="CameraPlayer" type="Camera2D" parent="."]
+current = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
