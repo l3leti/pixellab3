@@ -1,14 +1,19 @@
-#LaserBeam2D
+#LaserBeam2D.gd
 class_name RayoLaser
 extends RayCast2D
 
-
+##Atributos export
 export var cast_speed := 7000.0
 export var max_length := 1400.0
 export var growth_time := 0.1
+export var radio_danio:float= 4.0
+export var energia:float = 4.0
+export var radio_desgaste:float= 1.0
 
-
+##Atributos
 var is_casting := false setget set_is_casting
+
+##Atributos onready
 
 onready var fill := $FillLine2D
 onready var tween := $Tween
@@ -18,6 +23,8 @@ onready var beam_particles := $BeamParticles2D
 onready var line_width: float = fill.width
 onready var laser_sfx: AudioStreamPlayer2D = $LaserSFX
 
+
+##Funciones
 func _ready() -> void:
 	set_physics_process(false)
 	fill.points[1] = Vector2.ZERO
@@ -44,11 +51,16 @@ func set_is_casting(cast: bool) -> void:
 	casting_particles.emitting = is_casting
 
 func cast_beam(delta: float) -> void:
-	var cast_point := cast_to
+	if energia <= 0.0:
+		print("SIN ENERGIA")
+		set_is_casting(false)
+		return
 
+	energia += radio_desgaste * delta
+	
+	var cast_point := cast_to
 	force_raycast_update()
 	collision_particles.emitting = is_colliding()
-
 	if is_colliding():
 		cast_point = to_local(get_collision_point())
 		collision_particles.global_rotation = get_collision_normal().angle()
@@ -58,6 +70,8 @@ func cast_beam(delta: float) -> void:
 	fill.points[1] = cast_point
 	beam_particles.position = cast_point * 0.5
 	beam_particles.process_material.emission_box_extents.x = cast_point.length() * 0.5
+
+
 
 func appear() -> void:
 	if tween.is_active():
