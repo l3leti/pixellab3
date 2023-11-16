@@ -25,7 +25,7 @@ sector_meteoritos = ExtResource( 9 )
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 7 )]
 position = Vector2( 1667, 444 )
 tipo_peligro = "Meteorito"
-numero_peligros = 12
+numero_peligros = 3
 
 [node name="ContenedorEstaciones" type="Node" parent="."]
 

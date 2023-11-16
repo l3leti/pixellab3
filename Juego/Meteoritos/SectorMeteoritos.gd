@@ -13,7 +13,7 @@ var spawners: Array
 ##Metodos
 func _ready()-> void :
 	almacenar_spawners()
-	conectar_senalies_detectores()
+	conectar_seniales_detectores()
 	$Timer.wait_time = intervalo_spawn
 
 ##Metodos Custom
@@ -25,7 +25,7 @@ func spawner_aleatorio() -> int:
 	randomize()
 	return randi() % spawners.size()
 
-func conectar_senalies_detectores() -> void:
+func conectar_seniales_detectores() -> void:
 	for detector in $DetectorFueraZona.get_children():
 		detector.connect("body_entered", self, "_on_detector_body_entered")
 
@@ -40,6 +40,7 @@ func _on_Timer_timeout()-> void:
 	if cantidad_meteoritos == 0:
 		$Timer.stop()
 		return
+	
 	spawners [spawner_aleatorio()].spawnear_meteoritos()
 	cantidad_meteoritos -= 1
 
