@@ -8,7 +8,7 @@ export var max_length := 1400.0
 export var growth_time := 0.1
 export var radio_danio:float= 4.0
 export var energia:float = 4.0
-export var radio_desgaste:float= 1.0
+export var radio_desgaste:float= -1.0
 
 ##Atributos
 var is_casting := false setget set_is_casting
