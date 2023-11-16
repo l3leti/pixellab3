@@ -50,13 +50,11 @@ func controlar_energia(consumo:float)-> void:
 		desactivar()
 
 ## Señales Internas
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+func _on_AnimationPlayer_animation_finished(anim_name: String)-> void:
 	if anim_name == "activando" and esta_activado:
 		$AnimationPlayer.play("activado")
 		set_process(true)
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(body:Node)-> void:
 	body.queue_free()
 
-func _on_Escudo_area_entered(_area: Node) -> void:
-	queue_free()
