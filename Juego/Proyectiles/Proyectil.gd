@@ -4,7 +4,7 @@ extends Area2D
 
 ## Atributos
 var velocidad: Vector2 = Vector2.ZERO
-var danio:float = 5.0
+var danio:float = 10.0
 
 ## Metodos
 func _physics_process(delta: float) -> void:
