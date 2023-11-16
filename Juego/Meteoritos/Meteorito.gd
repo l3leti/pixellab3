@@ -38,17 +38,21 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 ## Constructor
 func crear(pos: Vector2, dir:Vector2, tamanio: float) -> void:
 	position = pos
+	pos_spawn_original = position
 	mass *= tamanio
 	$Sprite.scale = Vector2.ONE * tamanio
-	linear_velocity = (vel_lineal_base * dir / tamanio) * aletorizar_velocidad()
 	var _radio:int = int($Sprite.texture.get_size().x / 2.3 * tamanio)
 	var forma_colision:CircleShape2D = CircleShape2D.new()
+	forma_colision.radius = _radio
 	$CollisionShape2D.shape = forma_colision
+	#Velocidades
+	linear_velocity = (vel_lineal_base * dir / tamanio) * aletorizar_velocidad()
 	angular_velocity = (vel_ang_base / tamanio) * aletorizar_velocidad()
+	vel_spawn_original = linear_velocity
+	#Calcular VElocidades
 	hitpoints = hitpoints_base * tamanio
 	print("hitpoints", hitpoints)
-	#Calcular VElocidades
-	vel_spawn_original = linear_velocity
+
 
 ## Metodos Custom
 

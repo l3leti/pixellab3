@@ -5,7 +5,7 @@ extends Area2D
 
 ## Atributos Export
 export (String, "vacio", "Meteorito", "Enemigo") var tipo_peligro
-export var numero_peligros:int = 10
+export var numero_peligros:int = 10.0
 
 ##Señales
 
@@ -15,7 +15,7 @@ func _on_body_entered(body: Node) ->void:
 	yield(get_tree().create_timer(0.1), "timeout")
 	enviar_senial()
 
-func enviar_senial() -> void:
+func enviar_senial():
 	Eventos.emit_signal(
 		"nave_en_sector_peligro",
 		$Position2D.global_position,

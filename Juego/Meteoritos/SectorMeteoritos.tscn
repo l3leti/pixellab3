@@ -240,7 +240,7 @@ position = Vector2( -1150, -720 )
 direccion = Vector2( 1, 2 )
 
 [node name="MeteoritoSpawner" parent="Spawners" instance=ExtResource( 1 )]
-position = Vector2( -1150, -360 )
+position = Vector2( -1150, -320 )
 direccion = Vector2( 1, 2 )
 
 [node name="MeteoritoSpawner2" parent="Spawners" instance=ExtResource( 1 )]
@@ -316,12 +316,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -535.5
-margin_top = -56.5
-margin_right = 535.5
-margin_bottom = 56.5
+margin_left = -723.0
+margin_top = -114.5
+margin_right = 723.0
+margin_bottom = 114.5
 custom_fonts/font = SubResource( 12 )
-text = "!!ADVERTENcIA!!!"
+text = "ADVERTENCIA
+meteoritos is coming"
 
 [node name="AdvertenciaSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
