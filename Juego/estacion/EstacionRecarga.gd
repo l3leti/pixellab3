@@ -12,11 +12,17 @@ export var radio_energia_entregada:float= 0.005
 var nave_player:Player = null
 var player_en_zona:bool = false
 
+##Atributos on ready
+
+onready var carga_sfx:AudioStreamPlayer2D = $CargasSFX
+
 ##Metodos
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not puede_recargar(event):
 		return
+	
+	controlar_energia()
 	
 	energia -= radio_energia_entregada
 	print ("Escudo Estacion; ", energia)
@@ -30,8 +36,16 @@ func _unhandled_input(event: InputEvent) -> void:
 func puede_recargar(event:InputEvent) ->bool:
 	var hay_input = event.is_action("recarga_escudo") or event.is_action("recarga_laser")
 	if hay_input and player_en_zona and energia > 0.0:
+		if !carga_sfx.playing:
+			carga_sfx.play()
 		return true
 	return false
+
+func controlar_energia()-> void:
+	energia -= radio_energia_entregada
+	if energia <= 0.0:
+		$VaciosSFX.play()
+	print("Energio estacion ;", energia)
 
 # Señales Internas
 
