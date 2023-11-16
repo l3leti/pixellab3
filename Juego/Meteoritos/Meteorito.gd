@@ -17,7 +17,6 @@ var vel_spawn_original:Vector2
 var esta_destrudio:bool = false
 
 ##Setters y Getters
-
 func set_esta_en_sector(valor:bool) ->void:
 	esta_en_sector =  valor
 

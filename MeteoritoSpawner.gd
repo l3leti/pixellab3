@@ -19,4 +19,3 @@ func tamanio_meteorito_aleatorio() -> float:
 	randomize()
 	return rand_range(rango_tamanio_meteorito[0], rango_tamanio_meteorito[1])
 
-##Señales Internas

@@ -9,7 +9,6 @@ onready var tween_sonido:Tween = $Tween
 
 var volumen_original:float
 
-# 
 func _ready() -> void:
 	volumen_original = volume_db
 	volume_db = volumen_apagado

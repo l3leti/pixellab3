@@ -139,9 +139,6 @@ func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio:fl
 	) 
 	contenedor_meteoritos.add_child(new_meteorito)
 
-
 func _on_TweenCamara_tween_completed(object, key):
 	if object.name == "CamaraPlayer":
 		object.global_position = $Player.global_position
-
-
