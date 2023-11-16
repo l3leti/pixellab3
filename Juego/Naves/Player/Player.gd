@@ -10,6 +10,7 @@ export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
 export var estela_maxima:int = 150
 export var hitpoints:float = 15.0
+
 ## Atributos
 var empuje:Vector2 = Vector2 .ZERO
 var dir_rotacion:int = 0
@@ -18,11 +19,18 @@ var no_hacer_nada = false
 
 ## Atributos Onready
 onready var canion:Canion = $Canion
-onready var laser: RayoLaser = $LaserBeam2D
+onready var laser: RayoLaser = $LaserBeam2D setget ,get_laser
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
-onready var escudo:Escudo = $Escudo
+onready var escudo:Escudo = $Escudo setget , get_escudo 
+
+## SEtters y Getters
+func get_laser() -> RayoLaser:
+	return laser
+
+func get_escudo() -> Escudo:
+	return escudo
 
 ## Metodos
 func _unhandled_input(event: InputEvent) -> void:

@@ -3,7 +3,8 @@ class_name Escudo
 extends Area2D
 
 ## Variables
-var esta_activado:bool = false 
+var esta_activado:bool = false setget , get_esta_activado
+var energia_original:float
 
 ## Variables Export
 export var energia:float = 8.0
@@ -15,13 +16,12 @@ func get_esta_activado() -> bool:
 
 ##Metodos
 func _ready() -> void:
+	energia_original = energia
 	set_process(false)
 	controlar_collisionador(true)
 
 func _process(delta: float) -> void:
-	energia += radio_desgaste * delta
-	if energia <= 0.0:
-		desactivar()
+	controlar_energia(radio_desgaste * delta)
 
 ##Metodos Custom
 func controlar_collisionador(esta_descativado: bool) -> void:
@@ -40,6 +40,15 @@ func activar() -> void:
 	controlar_collisionador(false)
 	$AnimationPlayer.play("activando")
 
+func controlar_energia(consumo:float)-> void:
+	energia += consumo
+	print("Energia escudo: ", energia)
+	
+	if energia > energia_original:
+		energia = energia_original
+	elif energia <= 0.0:
+		desactivar()
+
 ## Señales Internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "activando" and esta_activado:
@@ -49,5 +58,5 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func _on_body_entered(body: Node) -> void:
 	body.queue_free()
 
-func _on_area_entered(_area: Node) -> void:
+func _on_Escudo_area_entered(_area: Node) -> void:
 	queue_free()
