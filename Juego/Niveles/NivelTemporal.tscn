@@ -33,7 +33,7 @@ z_as_relative = false
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 7 )]
-position = Vector2( 1361, 441 )
+position = Vector2( 1109, 417 )
 tipo_peligro = "Meteorito"
 numero_peligros = 12
 
