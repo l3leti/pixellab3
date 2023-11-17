@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Juego/Enemigos/EnemigoBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Enemigos/EnemigoInterceptor.gd" type="Script" id=2]
@@ -11,7 +11,7 @@ friction = 0.0
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 78.1601
+radius = 63.7887
 
 [sub_resource type="Animation" id=2]
 resource_name = "default"
@@ -80,6 +80,12 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.780392 ), Color( 1, 1, 1, 0.607843 ), Color( 1, 1, 1, 0.427451 ), Color( 1, 1, 1, 0.207843 ), Color( 1, 1, 1, 0 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=5]
+radius = 668.007
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 591.166
+
 [node name="EnemigoInterceptor" instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 13
@@ -87,6 +93,7 @@ physics_material_override = SubResource( 4 )
 contacts_reported = 2
 contact_monitor = true
 script = ExtResource( 2 )
+potencia_max = 800.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708
@@ -113,21 +120,25 @@ anims/default = SubResource( 2 )
 anims/spawn = SubResource( 3 )
 
 [node name="SpriteSpawn" type="Sprite" parent="." index="5"]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 
 [node name="AreaDisparo" type="Area2D" parent="." index="6"]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
+shape = SubResource( 5 )
 
 [node name="AreaDeteccion" type="Area2D" parent="." index="7"]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
+[connection signal="body_exited" from="AreaDisparo" to="." method="_on_AreaDisparo_body_exited"]
+[connection signal="body_entered" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_entered"]
+[connection signal="body_exited" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_exited"]
 
 [editable path="Canion"]

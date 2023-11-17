@@ -3,7 +3,7 @@ class_name Nivel
 extends Node
 
 ##Atributos
-
+var player:Player = null
 var meteoritos_totales:int = 0
 
 #Atributos Export
@@ -12,17 +12,20 @@ export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var tiempo_transicion_camara:float = 10
+export var enemigo_interceptor:PackedScene = null
 
 #Atributos Onready
 onready var contenedor_proyectiles:Node
 onready var contenedor_meteoritos: Node
 onready var contenedor_sector_meteoritos: Node
 onready var camara_nivel:Camera2D = $CameraNivel
+onready var contenedor_enemigos:Node
 
 #Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contenedores()
+	player = DatosJuego.get_player_actual()
 
 #Metodos Custom
 func conectar_seniales() -> void:
@@ -61,6 +64,9 @@ func crear_contenedores() -> void:
 	contenedor_sector_meteoritos = Node.new()
 	contenedor_sector_meteoritos.name = "ContenedorSectorMeteoritos"
 	add_child(contenedor_sector_meteoritos)
+	contenedor_enemigos = Node.new()
+	contenedor_enemigos.name = "ContenedorEnemigos"
+	add_child(contenedor_enemigos)
 
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
@@ -128,6 +134,13 @@ func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical: float)-> 
 	var rand_y = rand_range(-rango_vertical, rango_vertical)
 	return Vector2(rand_x, rand_y)
 
+func crear_sector_enemigos(num_enemigos:int)->void:
+	for i in range(num_enemigos):
+		var new_interceptor:EnemigoInterceptor = enemigo_interceptor.instance()
+		var spawn_pos:Vector2 = crear_posicion_aleatoria(1000.0, 800.0)
+		new_interceptor.global_position = player.global_position + spawn_pos
+		contenedor_enemigos.add_child(new_interceptor)
+
 ## Conexion señales iternas
 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio:float) -> void:
@@ -142,3 +155,10 @@ func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio:fl
 func _on_TweenCamara_tween_completed(object, key):
 	if object.name == "CamaraPlayer":
 		object.global_position = $Player.global_position
+
+func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int)->void:
+	if tipo_peligro == "Meteorito":
+		crear_sector_meteoritos(centro_cam, num_peligros)
+	elif tipo_peligro == "Enemigo":
+		crear_sector_enemigos(num_peligros)
+
