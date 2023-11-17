@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Juego/Enemigos/EnemigoBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Enemigos/EnemigoInterceptor.gd" type="Script" id=2]
 [ext_resource path="res://Juego/Enemigos/enemigotrans.png" type="Texture" id=3]
 [ext_resource path="res://Juego/Enemigos/lasertrans10.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Proyectiles/ProyectilEnemigo.tscn" type="PackedScene" id=5]
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 78.1601
@@ -76,6 +81,11 @@ tracks/4/keys = {
 }
 
 [node name="EnemigoInterceptor" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 13
+physics_material_override = SubResource( 4 )
+contacts_reported = 2
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
@@ -86,19 +96,38 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
+[node name="Canion" parent="." index="2"]
+position = Vector2( -1.124, 0 )
+proyectil = ExtResource( 5 )
+cadencia_disparo = 1.2
+velocidad_proyectil = 1200
+
+[node name="PuntoIzquierdo" parent="Canion" index="0"]
+position = Vector2( 0.124, -26 )
+
+[node name="PuntoDerecho" parent="Canion" index="1"]
+position = Vector2( -0.876, 29 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 anims/default = SubResource( 2 )
 anims/spawn = SubResource( 3 )
 
 [node name="SpriteSpawn" type="Sprite" parent="." index="5"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 
 [node name="AreaDisparo" type="Area2D" parent="." index="6"]
+visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
 
 [node name="AreaDeteccion" type="Area2D" parent="." index="7"]
+visible = false
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
+
+[editable path="Canion"]

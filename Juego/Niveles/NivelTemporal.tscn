@@ -23,7 +23,7 @@ sector_meteoritos = ExtResource( 9 )
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 7 )]
-position = Vector2( 1667, 444 )
+position = Vector2( 2091, 891 )
 tipo_peligro = "Meteorito"
 numero_peligros = 3
 
@@ -97,6 +97,6 @@ texture = ExtResource( 10 )
 position = Vector2( 1289, 915 )
 
 [node name="EnemigoInterceptor" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1158, 617 )
+position = Vector2( 1313, 1289 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
