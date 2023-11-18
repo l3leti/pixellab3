@@ -36,6 +36,8 @@ func conectar_seniales() -> void:
 	Eventos.connect("spawn_meteoritos", self, "_on_spawn_meteoritos")
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 	Eventos.connect("nave_en_sector_peligro", self, "on_nave_en_sector_peligro")
+	Eventos.connect("base_destruida", self, "_on_base_destruida")
+	Eventos.connect("spawn_orbital", self,"on_spawn_orbital")
 
 # warning-ignore:unused_argument
 func _on_nave_destruida(nave: Player,posicion: Vector2, num_explosiones: int) -> void:
@@ -47,7 +49,7 @@ func _on_nave_destruida(nave: Player,posicion: Vector2, num_explosiones: int) ->
 			camara_nivel,
 			tiempo_transicion_camara
 		)
-		
+	crear_explosiones(posicion, num_explosiones, 0.6, Vector2(200.0,200.0))
 	for i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion + crear_posicion_aleatoria(100.0, 50.0)
@@ -141,6 +143,18 @@ func crear_sector_enemigos(num_enemigos:int)->void:
 		new_interceptor.global_position = player.global_position + spawn_pos
 		contenedor_enemigos.add_child(new_interceptor)
 
+func crear_explosiones(posicion: Vector2, numero : int = 1,intervalo : float = 0.0,rangos_aleatorios:Vector2 = Vector2(0.0, 0.0))-> void:
+	for i in range(numero):
+		var new_explosion:Node2D = explosion.instance()
+		new_explosion.global_position = posicion + crear_posicion_aleatoria(rangos_aleatorios.x, rangos_aleatorios.y)
+		add_child(new_explosion)
+		yield(get_tree().create_timer(intervalo),"timeout")
+
+func _on_base_destruida(pos_partes:Array)-> void:
+	for posicion in pos_partes:
+		crear_explosiones(posicion)
+		yield(get_tree().create_timer(0.5),"timeout")
+
 ## Conexion señales iternas
 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio:float) -> void:
@@ -161,4 +175,7 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 		crear_sector_meteoritos(centro_cam, num_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
+
+func on_spawn_orbital(enemigo:EnemigoOrbital)->void:
+	contenedor_enemigos.add_child(enemigo)
 

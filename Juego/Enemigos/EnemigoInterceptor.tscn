@@ -125,12 +125,14 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 
 [node name="AreaDisparo" type="Area2D" parent="." index="6"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
 shape = SubResource( 5 )
 
 [node name="AreaDeteccion" type="Area2D" parent="." index="7"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
