@@ -11,9 +11,9 @@ func _ready()->void:
 	player_objetivo = DatosJuego.get_player_actual()
 	Eventos.connect("nave_destruida", self, "_on_nave_destruida")
 
+# warning-ignore:unused_argument
 func _physics_process(delta: float)-> void:
 	rotar_hacia_el_player()
-
 
 ##Metodos Custom
 func _on_nave_destruida(nave: NaveBase, _posicion, _explosiones)-> void:
