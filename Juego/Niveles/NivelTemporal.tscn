@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://default_env.tres" type="Environment" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=11]
 [ext_resource path="res://Juego/estacion/EstacionRecarga.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Juego/Enemigos/BaseEnemiga.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Juego/estacion/rele/ReleMasa.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Juego/UI/HUD/HUD.tscn" type="PackedScene" id=15]
 
 [node name="NivelTemporal" type="Node"]
 script = ExtResource( 3 )
@@ -21,6 +23,9 @@ meteorito = ExtResource( 6 )
 explosion_meteorito = ExtResource( 8 )
 sector_meteoritos = ExtResource( 9 )
 enemigo_interceptor = ExtResource( 5 )
+rele_masa = ExtResource( 14 )
+
+[node name="HUD" parent="." instance=ExtResource( 15 )]
 
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
@@ -34,17 +39,17 @@ numero_peligros = 3
 [node name="EstacionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
 position = Vector2( -53, 1038 )
 
+[node name="ContenedorBasesEnemigas" type="Node" parent="."]
+
+[node name="BaseEnemiga" parent="ContenedorBasesEnemigas" instance=ExtResource( 13 )]
+position = Vector2( 974, 1676 )
+
 [node name="TriggersInterceptores" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersInterceptores" instance=ExtResource( 7 )]
 position = Vector2( 1475, 897 )
 tipo_peligro = "Enemigo"
 numero_peligros = 2
-
-[node name="BaseEnemiga" type="Node" parent="."]
-
-[node name="BaseEnemiga" parent="BaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 974, 1676 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
@@ -55,6 +60,10 @@ script = ExtResource( 11 )
 [node name="TweenZoom" type="Tween" parent="CameraNivel"]
 
 [node name="TweenCamara" type="Tween" parent="."]
+
+[node name="RestartTimer" type="Timer" parent="."]
+
+[node name="ActualizadorTimer" type="Timer" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -110,7 +119,6 @@ texture = ExtResource( 10 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 903, 897 )
 
-[node name="EnemigoInterceptor" parent="." instance=ExtResource( 5 )]
-position = Vector2( 941, 505 )
-
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
+[connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]
