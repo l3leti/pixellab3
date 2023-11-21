@@ -28,6 +28,5 @@ func _on_DetectorPlayer_body_entered(body:Node)->void:
 	body.desactivar_controles()
 	atraer_player(body)
 
-
 func _on_Tween_tween_all_completed()->void:
 	print("sos crack, pasaste de nicel!;")

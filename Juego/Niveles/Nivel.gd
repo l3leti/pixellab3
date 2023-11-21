@@ -182,7 +182,7 @@ func crear_rele()-> void:
 		margen.x *= -1
 	if pos_aleatoria.y <0:
 		margen.y *= -1
-	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
+	new_rele_masa.global_position= player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
 	add_child(new_rele_masa)
 
 func destruir_nivel()-> void:

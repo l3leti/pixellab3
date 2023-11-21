@@ -24,7 +24,6 @@ func _ready()->void:
 	time_spawner.wait_time = intervalo_spawn
 	$AnimationPlayer.play(elegir_animacion_aleteoria())
 
-
 func _process(delta:float)->void:
 	var player_objetivo:Player = DatosJuego.get_player_actual()
 	if not player_objetivo:
@@ -98,12 +97,10 @@ func _on_AreaColision_body_entered(body:Node)-> void:
 	if body.has_method("destruir"):
 		body.destruir()
 
-
 func _on_VisibilityNotifier2D_screen_entered():
 	$VisibilityNotifier2D.queue_free()
 	spawnear_orbital()
 	time_spawner.start()
-
 
 func _on_TimerSpawnearEnemigos_timeout()-> void:
 	if numero_orbitales == 0:

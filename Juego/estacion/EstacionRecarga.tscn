@@ -70,7 +70,7 @@ tracks/1/keys = {
 resource_name = "default"
 length = 0.001
 
-[node name="EstacionRecarga" type="Node2D"]
+[node name="EstacionRecarga" type="Node2D" groups=["minimap"]]
 script = ExtResource( 3 )
 
 [node name="AreaColision" type="Area2D" parent="."]

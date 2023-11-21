@@ -34,4 +34,4 @@ func efecto_transicion(desde_vol: float, hasta_vol: float) -> void:
 	)
 # warning-ignore:return_value_discarded
 	tween_sonido.start()
-	
+

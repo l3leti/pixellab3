@@ -5,11 +5,11 @@ extends CanvasLayer
 onready var info_zona_recarga:ContenedorInformcaion = $InfoZonaRecarga
 onready var info_meteoritos:ContenedorInformcaion = $InfoMeteoritos
 onready var info_tiempo_restante:ContenedorInformcaion = $InfoTiempoRestante
+onready var info_laser:ContenedorInformacionEnergia = $InfoLaser
+onready var info_escudo:ContenedorInformacionEnergia = $InfoEscudo
 
 ##Metodos
 func _ready()-> void:
-	#Eventos.connect("nivel_iniciado", self , "fade_out")
-	#Eventos.connect("nivel_terminado", self, "fade_in")
 	conectar_seniales() 
 
 ##Metodos Custom
@@ -25,6 +25,10 @@ func conectar_seniales()->void:
 	Eventos.connect("detecto_zona_recarga", self, "_on_detecto_zona_recarga")
 	Eventos.connect("cambio_numero_meteoritos", self ,"_on_actualizar_info_meteoritos" )
 	Eventos.connect("actualizar_tiempo", self, "on_actualizar_info_tiempo")
+	Eventos.connect("cambio_energia_laser", self, "_on_actualizar_energia_laser")
+	Eventos.connect("ocultar_energia_laser", self, "ocultar")
+	Eventos.connect("cambio_energia_escudo", self , "_on_actualizar_energia_escudo")
+	Eventos.connect("ocultar_energia_escudo", info_escudo, "ocultar")
 
 func _on_detecto_zona_recarga(en_zona:bool)-> void:
 	if en_zona:
@@ -47,3 +51,15 @@ func on_actualizar_info_tiempo(tiempo_restante)-> void:
 	elif tiempo_restante == 0:
 		info_tiempo_restante.ocultar()
 
+func _on_actualizar_energia_laser(energia_max:float, energia_actual:float)->void:
+	info_laser.mostrar()
+	info_laser.actualizar_energia(energia_max, energia_actual)
+
+func _on_actualizar_energia_escudo(energia_max:float, energia_actual:float)->void:
+	info_escudo.mostrar()
+	info_escudo.actualizar_energia(energia_max, energia_actual)
+
+func _on_nave_destruida(nave: NaveBase, _posicion, _explosiones)->void:
+	if nave is Player:
+		get_tree().call_group("contenedor_info", "set_esta_activo", false)
+		get_tree().call_group("contenedor_info", "ocultar")
