@@ -56,28 +56,40 @@ anims/default = SubResource( 1 )
 anims/fade_in = SubResource( 2 )
 
 [node name="InfoZonaRecarga" parent="." groups=["contenedores_info"] instance=ExtResource( 3 )]
-margin_left = 1648.0
-margin_top = 13.0
-margin_right = 1914.0
-margin_bottom = 99.0
+margin_left = 26.0
+margin_top = 37.0
+margin_right = 292.0
+margin_bottom = 123.0
 
 [node name="Label" parent="InfoZonaRecarga" index="1"]
 text = "En zona de recarga"
 
 [node name="InfoMeteoritos" parent="." groups=["contenedores_info"] instance=ExtResource( 3 )]
-margin_left = 733.0
-margin_top = 13.0
-margin_right = 999.0
-margin_bottom = 99.0
+margin_left = 23.0
+margin_top = 973.0
+margin_right = 289.0
+margin_bottom = 1059.0
 
 [node name="Label" parent="InfoMeteoritos" index="1"]
-text = "Meteoritos REstantes:"
+text = "Meteoritos Restantes:"
 
 [node name="InfoTiempoRestante" parent="." groups=["contenedores_info"] instance=ExtResource( 3 )]
+margin_left = 1611.0
+margin_top = 41.0
+margin_right = 1877.0
+margin_bottom = 127.0
 
 [node name="InfoLaser" parent="." groups=["contenedores_info"] instance=ExtResource( 4 )]
+margin_left = 1627.0
+margin_top = 970.0
+margin_right = 1893.0
+margin_bottom = 1056.0
 
 [node name="InfoEscudo" parent="." groups=["contenedores_info"] instance=ExtResource( 4 )]
+margin_left = 1617.0
+margin_top = 847.0
+margin_right = 1883.0
+margin_bottom = 933.0
 
 [node name="MiniMapa" parent="." instance=ExtResource( 5 )]
 
