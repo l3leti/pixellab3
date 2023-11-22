@@ -21,8 +21,10 @@ var posicion_spawn:Vector2 = Vector2.ZERO
 
 ##Metodos
 func _ready()->void:
+	#barra_salud.set_valores(hitpoints)
 	time_spawner.wait_time = intervalo_spawn
 	$AnimationPlayer.play(elegir_animacion_aleteoria())
+
 
 func _process(delta:float)->void:
 	var player_objetivo:Player = DatosJuego.get_player_actual()
@@ -55,15 +57,20 @@ func destuir() -> void :
 		$Sprites/Sprite1.global_position
 	]
 	Eventos.emit_signal("base_destruida", self ,posicion_partes)
+	Eventos.emit_signal("minimap_objeto_destruido", self)
 	queue_free()
 
 func spawnear_orbital()->void:
 	numero_orbitales -= 1
-	$PosicionesSpanw/RutaEnemigo.global_position = global_position
+	$PosicionesSpawns/RutaEnemigo.global_position = global_position
 	var pos_spawn:Vector2 = deteccion_cuadrante()
-	$PosicionesSpanw/RutaEnemigo.global_position = global_position
+	$PosicionesSpawns/RutaEnemigo.global_position = global_position
 	var new_orbital:EnemigoOrbital = orbital.instance()
-	new_orbital.crear(global_position + pos_spawn, self, $PosicionesSpanw/RutaEnemigo)
+	new_orbital.crear(
+		global_position + pos_spawn,
+		self, 
+		$PosicionesSpanw/RutaEnemigo
+		)
 	Eventos.emit_signal("spawn_orbital", new_orbital)
 
 func deteccion_cuadrante() -> Vector2:
@@ -76,17 +83,17 @@ func deteccion_cuadrante() -> Vector2:
 	var angulo_player:float = rad2deg(dir_player.angle())
 
 	if abs(angulo_player) <= 45.0:
-		$PosicionesSpanw/RutaEnemigo.rotation_degrees = 180.0
+		$PosicionesSpawns/RutaEnemigo.rotation_degrees = 180.0
 		return $PosicionesSpawns/Este.position
 	elif abs(angulo_player) > 135.0 and abs(angulo_player) <= 180.0:
-		$PosicionesSpanw/RutaEnemigo.rotation_degrees = 0.0
+		$PosicionesSpawns/RutaEnemigo.rotation_degrees = 0.0
 		return $PosicionesSpawns/Oeste.position
 	elif abs(angulo_player) > 45.0 and abs(angulo_player) <= 135.0:
 		if sign(angulo_player) > 0:
-			$PosicionesSpanw/RutaEnemigo.rotation_degrees = 270.0
+			$PosicionesSpawns/RutaEnemigo.rotation_degrees = 270.0
 			return $PosicionesSpawns/Sur.position
 		else:
-			$PosicionesSpanw/RutaEnemigo.rotation_degrees = 90.0
+			$PosicionesSpawns/RutaEnemigo.rotation_degrees = 90.0
 			return $PosicionesSpawns/Norte.position
 	return $PosicionesSpawns/Norte.position
 

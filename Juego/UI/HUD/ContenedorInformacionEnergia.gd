@@ -1,4 +1,4 @@
-#ContenedorInformacionEnergia
+#ContenedorInformacionEnergia.gd
 class_name ContenedorInformacionEnergia
 extends ContenedorInformcaion
 

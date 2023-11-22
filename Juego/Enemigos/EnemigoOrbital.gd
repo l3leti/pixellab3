@@ -16,7 +16,7 @@ onready var detector_obstaculo:RayCast2D = $DEtectorObstaculo
 
 ##Constructor
 func crear(pos:Vector2, duenia:Node2D, ruta_duenia: Path2D)->void:
-	global_position=pos
+	global_position= pos
 	base_duenia = duenia
 	ruta = ruta_duenia
 	path_folow = PathFollow2D.new()

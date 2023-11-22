@@ -57,6 +57,5 @@ func _on_AnimationPlayer_animation_finished(anim_name: String)-> void:
 		$AnimationPlayer.play("activado")
 		set_process(true)
 
-func _on_body_entered(body:Node)-> void:
+func _on_body_entered(body: Node)->void	:
 	body.queue_free()
-
