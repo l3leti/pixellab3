@@ -16,6 +16,9 @@ export var tiempo_transicion_camara:float = 2.0
 export var enemigo_interceptor:PackedScene = null
 export var rele_masa:PackedScene = null
 export var tiempo_limite:int= 10
+export var musica_nivel:AudioStream = null
+export var musica_combate:AudioStream = null
+
 
 #Atributos Onready
 onready var contenedor_proyectiles:Node
@@ -36,6 +39,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Eventos.emit_signal("nivel_iniciado")
 	actualizador_timer.start()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	MusicaJuego.set_streams(musica_nivel, musica_combate)
+	MusicaJuego.play_musica_nivel()
 
 #Metodos Custom
 func conectar_seniales() -> void:
@@ -50,7 +56,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("spawn_orbital", self,"on_spawn_orbital")
 
 # warning-ignore:unused_argument
-func _on_nave_destruida(nave: Player,posicion: Vector2, num_explosiones: int) -> void:
+func _on_nave_destruida(nave: Player,posicion: Vector2, num_explosiones: int, base:Node2D) -> void:
 # warning-ignore:unused_variable
 	if nave is Player:
 		transicion_camaras(
@@ -182,7 +188,7 @@ func crear_rele()-> void:
 		margen.x *= -1
 	if pos_aleatoria.y <0:
 		margen.y *= -1
-	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
+	new_rele_masa.global_position= player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
 	add_child(new_rele_masa)
 
 func destruir_nivel()-> void:

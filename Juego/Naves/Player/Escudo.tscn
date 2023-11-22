@@ -3,7 +3,7 @@
 [ext_resource path="res://Juego/Naves/Player/shield3.k.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Player/shield2.n.png" type="Texture" id=2]
 [ext_resource path="res://Juego/Naves/Player/Escudo.gd" type="Script" id=3]
-[ext_resource path="res://Juego/Naves/Player/thrusterFire1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Juego/Naves/Player/forceField_game.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Juego/Naves/Player/shield1.9o.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=4]
@@ -236,5 +236,5 @@ anims/deafult = SubResource( 3 )
 stream = ExtResource( 4 )
 bus = "SFX"
 
-[connection signal="body_entered" from="." to="." method="_on_Escudo_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

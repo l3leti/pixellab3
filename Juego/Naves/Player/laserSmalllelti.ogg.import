@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laserSmalllelti.ogg-343191dbddb12074d49e89c10a775d5c.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/Player/laserSmalllelti.ogg"
+dest_files=[ "res://.import/laserSmalllelti.ogg-343191dbddb12074d49e89c10a775d5c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

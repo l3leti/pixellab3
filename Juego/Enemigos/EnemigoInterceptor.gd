@@ -20,6 +20,9 @@ func _integrate_forces(state:Physics2DDirectBodyState) -> void:
 	linear_velocity.x = clamp(linear_velocity.x, -potencia_max, potencia_max)
 	linear_velocity.y = clamp(linear_velocity.y, - potencia_max, potencia_max)
 
+func _ready()->void:
+	Eventos.emit_signal("minimap_objeto_creado")
+
 ##Metodos Custom
 
 func controlador_estados_ia(nuevo_estado:int) ->void:

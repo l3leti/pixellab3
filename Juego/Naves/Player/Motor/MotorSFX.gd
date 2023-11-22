@@ -3,7 +3,7 @@ class_name Motor
 extends AudioStreamPlayer2D
 
 export var tiempo_transicion:float = 0.6
-export var volumen_apagado:float = 30.0
+export var volumen_apagado:float = -30.0
 
 onready var tween_sonido:Tween = $Tween
 
@@ -34,4 +34,4 @@ func efecto_transicion(desde_vol: float, hasta_vol: float) -> void:
 	)
 # warning-ignore:return_value_discarded
 	tween_sonido.start()
-	
+

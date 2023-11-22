@@ -2,6 +2,11 @@
 class_name ReleDeMasa
 extends Node2D
 
+##Metodos
+func _ready()->void:
+	Eventos.emit_signal("minimap_objeto_creado")
+
+
 ##Metodos Custom
 
 func atraer_player(body: Node)->void:
@@ -27,7 +32,6 @@ func _on_DetectorPlayer_body_entered(body:Node)->void:
 	$AnimationPlayer.play("super_activada")
 	body.desactivar_controles()
 	atraer_player(body)
-
 
 func _on_Tween_tween_all_completed()->void:
 	print("sos crack, pasaste de nicel!;")
