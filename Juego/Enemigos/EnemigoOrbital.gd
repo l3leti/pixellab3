@@ -39,7 +39,6 @@ func _process(delta:float)->void:
 	position = path_folow.global_position
 
 ##Señales internas
-
 func _on_base_destruida(base:Node2D,_pos)->void:
 	if base == base_duenia:
 		destruir()

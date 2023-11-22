@@ -50,7 +50,7 @@ func controlar_energia()-> void:
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		$VaciosSFX.play()
-	print("Energio estacion ;", energia)
+	#print("Energio estacion ;", energia)
 
 # Señales Internas
 

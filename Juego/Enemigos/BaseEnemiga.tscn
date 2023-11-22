@@ -104,7 +104,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.0784314, 0.933333, 0.933333, 1 )
+bg_color = Color( 0.603922, 0.0784314, 1, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -118,7 +118,10 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
+hitpoints = null
 orbital = ExtResource( 9 )
+numero_orbitales = null
+intervalo_spawn = null
 
 [node name="Sprites" type="Node2D" parent="."]
 rotation = -0.150077
@@ -187,7 +190,7 @@ position = Vector2( -227.724, 27.3722 )
 [node name="Este" type="Position2D" parent="PosicionesSpawns"]
 position = Vector2( 217.24, -16.668 )
 
-[node name="RutaEnemigo" type="Path2D" parent="PosicionesSpawns"]
+[node name="RutaEnemigo" type="Path2D" parent="."]
 curve = SubResource( 7 )
 script = ExtResource( 10 )
 

@@ -36,7 +36,7 @@ func controlador_estados(nuevo_estado: int) -> void:
 		ESTADO.MUERTO:
 			colisionador.set_deferred("disabled", true)
 			canion.set_puede_disparar(false)
-			Eventos.emit_signal("nave_destruida", self,  global_position, 3)
+			Eventos.emit_signal("nave_destruida", self,  global_position,3)
 			queue_free()
 		_:
 			printerr("Error de estado")
@@ -51,7 +51,7 @@ func recibir_danio(danio:float) -> void:
 		destruir()
 	
 	barra_salud.controlar_barra(hitpoints, true)
-	#impacto_sfx.play(
+	#impacto_sfx.play()
 
 ##Señales internas
 func _on_AnimationPlayer_animation_finished(anim_name):

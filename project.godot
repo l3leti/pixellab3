@@ -171,7 +171,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Meteoritos"
-run/main_scene="res://Juego/Niveles/NivelTemporal.tscn"
+run/main_scene="res://Juego/Niveles/NivelBase.tscn"
 config/icon="res://nave.png"
 
 [autoload]

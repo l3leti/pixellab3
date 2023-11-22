@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://Juego/estacion/rele/ReleMasa.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/UI/HUD/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Meteoritos/Meteorito.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Juego/Niveles/Fondos/StarFieldBackground.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=11]
+[ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=12]
+
+[node name="NivelBase" type="Node2D"]
+script = ExtResource( 11 )
+explosion = ExtResource( 7 )
+meteorito = ExtResource( 9 )
+explosion_meteorito = ExtResource( 8 )
+sector_meteoritos = ExtResource( 4 )
+enemigo_interceptor = ExtResource( 5 )
+rele_masa = ExtResource( 2 )
+
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="TriggersLluviaMeteoritos" type="Node" parent="."]
+
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="ContenedorBasesEnemigas" type="Node" parent="."]
+
+[node name="TriggersInterceptores" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="CameraNivel" type="Camera2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="TweenZoom" type="Tween" parent="CameraNivel"]
+
+[node name="TweenCamara" type="Tween" parent="."]
+
+[node name="RestartTimer" type="Timer" parent="."]
+
+[node name="ActualizadorTimer" type="Timer" parent="."]
+
+[node name="StarFieldBackground" parent="." instance=ExtResource( 10 )]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 903, 897 )
+
+[connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
+[connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]

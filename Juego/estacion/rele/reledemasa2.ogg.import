@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/reledemasa2.ogg-53dd095dc19d41869eb3aeac32dd2019.oggstr"
+
+[deps]
+
+source_file="res://Juego/estacion/rele/reledemasa2.ogg"
+dest_files=[ "res://.import/reledemasa2.ogg-53dd095dc19d41869eb3aeac32dd2019.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

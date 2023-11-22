@@ -65,7 +65,7 @@ func _on_nave_destruida(nave: Player,posicion: Vector2, num_explosiones: int, ba
 			camara_nivel,
 			tiempo_transicion_camara
 		)
-	$RestartTimer.start()
+		$RestartTimer.start()
 	crear_explosiones(posicion, num_explosiones, 0.6, Vector2(100.0,50.0))
 	for i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
@@ -106,6 +106,7 @@ func on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peli
 		crear_sector_enemigos(num_peligros)
 
 func crear_sector_meteoritos(centro_camara: Vector2, numero_peligros:int)->void:
+	MusicaJuego.transicion_musicas()
 	meteoritos_totales = numero_peligros
 	var new_sector_meteoritos: SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara, numero_peligros)
@@ -136,7 +137,9 @@ func transicion_camaras(desde:Vector2, hasta: Vector2, camara_actual: Camera2D, 
 func controlar_meteoritos_restantes() -> void:
 	meteoritos_totales -= 1
 	Eventos.emit_signal("cambio_numero_meteoritos", meteoritos_totales)
+	
 	if meteoritos_totales == 0:
+		MusicaJuego.transicion_musicas()
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		$Player/CameraPlayer.set_puede_hacer_zoom(true)
 		var zoom_actual = $Player/CameraPlayer.zoom
@@ -195,7 +198,7 @@ func destruir_nivel()-> void:
 	crear_explosiones(
 		player.global_position,
 		8.0,
-		
+		#2,
 		1.5,
 		Vector2(300.0,200.0)
 	)
@@ -219,6 +222,7 @@ func _on_TweenCamara_tween_completed(object, key):
 func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int)->void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_cam, num_peligros)
+		Eventos.emit_signal("cambio_numero_meteoritos", num_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
 

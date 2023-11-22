@@ -5,14 +5,22 @@ extends ProgressBar
 ##Atributos Onready
 onready var tween_visibilidad:Tween = $TweenVisibilidad
 
+##Atributos Export
+export var siempre_visible:bool =false
+export var es_top_level:bool = false
 
 ##Metodos
 func _ready()->void:
+	set_as_toplevel(es_top_level)
+	if es_top_level:
+		rect_global_position = owner.global_position + rect_position
 	
-	
-	modulate = Color (1,1,1,0)
+	modulate = Color (1,1,1,siempre_visible)
 
 ##Metodos Custom
+
+func set_hitpoints_actual(hitpoints:float)->void:
+	value=hitpoints
 
 func controlar_barra(hitpoints_nave:float, mostrar:bool)->void:
 	value = hitpoints_nave
